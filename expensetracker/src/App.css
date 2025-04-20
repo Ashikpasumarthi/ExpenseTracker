@@ -1,0 +1,155 @@
+.App {
+  /* text-align: center; */
+  background-color: #3B3B3B;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.expenseTracker {
+  background-color: #626262;
+  padding: 3rem;
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+  align-items: center;
+  justify-content: center;
+  margin: 0rem 2rem;
+  border-radius: 1rem;
+  height: 12rem;
+}
+
+.tracker {
+  background-color: #9B9B9B;
+  width: 26rem;
+  height: 11rem;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.balanceInput {
+  width: 8rem;
+  height: 2.4rem;
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0rem 0.2rem 0.6rem -0.3rem #323235;
+}
+
+.balanceInput:focus {
+  outline: none;
+}
+
+.recharts-default-legend {
+  display: flex;
+}
+
+.recharts-legend-wrapper {
+  position: absolute;
+  width: fit-content;
+  height: 0rem !important;
+  right: 1rem !important;
+  bottom: 8rem !important;
+}
+
+.recharts-surface {
+
+  height: 93% !important;
+  position: relative;
+  top: 0rem !important;
+}
+
+.recharts-wrapper {
+  position: relative;
+  cursor: default;
+  width: 400px;
+  height: 400px;
+}
+
+.expenseInnerDiv {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+  grid-template-rows: repeat(2);
+  width: 100%;
+  column-gap: 2rem;
+  row-gap: 1rem;
+
+}
+
+.expenseInnerDiv input {
+  width: 11rem;
+  height: 2rem;
+  border: none;
+  border-radius: 0.7rem;
+}
+
+.transactionHistory {
+  background-color: white;
+  width: 60%;
+}
+
+.borderMap {
+  border-top: 0.1rem solid #c5bcbc !important;
+  position: relative;
+  top: -1rem;
+  width: 70rem;
+  left: 0.8rem;
+}
+
+.iconEdit {
+  background: orange;
+  color: white;
+  padding: 1rem;
+  height: 0.2rem;
+  display: flex;
+  align-items: center;
+  border-radius: 0.8rem;
+  width: 1rem;
+}
+
+.iconDelete{
+  background: red;
+  color: white;
+  padding: 1rem;
+  height: 0.2rem;
+  display: flex;
+  align-items: center;
+  border-radius: 0.8rem;
+  width: 1rem;
+}
+
+/* .App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */
