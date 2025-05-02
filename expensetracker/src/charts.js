@@ -1,11 +1,11 @@
 import React from 'react';
 import { PieChart, Pie, Cell, Legend } from 'recharts';
 
-export default function Charts({ expenseList }) {
+export default function Charts({ chartList }) {
 
-  console.log(expenseList)
+  console.log(chartList)
   // Prepare data for the chart
-  const data = expenseList.map(expense => ({
+  const data = chartList.map(expense => ({
     name: expense.category,
     value: Number(expense.price),
   }));

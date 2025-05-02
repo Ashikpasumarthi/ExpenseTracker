@@ -1,18 +1,38 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react';
 import ReactModal from 'react-modal';
 import Charts from "./charts";
 import { AiOutlineEdit } from "react-icons/ai";
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import HorizontalCharts from "./horizontalCharts"
+
 export default function Tracker() {
-    const [amount, setAmount] = useState({ balance: 5000, expenses: 0 });
+
+    const [amount, setAmount] = useState({ balance: localStorage.getItem('balance') ? Number(localStorage.getItem('balance')) : 0, expenses: localStorage.getItem('expenses') ? Number(localStorage.getItem('expenses')) : 0 });
     const [balanceModal, setBalanceModal] = useState(false);
     const [addBalance, setAddBalance] = useState('');
     const [expenseModal, setExpenseModal] = useState(false);
     const [expense, setExpense] = useState({ title: '', price: '', category: '', date: "" });
-    const [expenseList, setExpenseList] = useState([]);
+    const [expenseList, setExpenseList] = useState(() => {
+        const storedList = localStorage.getItem('expenseList');
+        return storedList ? JSON.parse(storedList) : [];
+    });
+    const [chartList, setChartList] = useState(() => {
+        const storedChartList = localStorage.getItem('chartList');
+        return storedChartList ? JSON.parse(storedChartList) : [];
+    });
+
     const [editIndex, setEditIndex] = useState(null)
     console.log(setAmount)
+    useEffect(() => {
+        localStorage.setItem('balance', amount.balance);
+        localStorage.setItem('expenses', amount.expenses);
+    }, [amount]);
+    // const [chartsData, setChartsData] = useState(()=>{
+    //     const charts = localStorage.getItem('chartsData');
+    //     return charts ? JSON.parse(charts) : [];
+    // });
+
 
     function handleAddBalance() {
         setAmount({ ...amount, balance: amount.balance + Number(addBalance) });
@@ -30,6 +50,8 @@ export default function Tracker() {
             alert("Please fill in all fields.");
             return;
         }
+
+
 
         if (editIndex !== null) {
             const prevPrice = Number(expenseList[editIndex].price);
@@ -53,6 +75,22 @@ export default function Tracker() {
             }));
         }
 
+        setChartList(prev => {
+
+            const index = prev.findIndex((item) => item.category === expense.category);
+            if (index > -1) {
+                let updated = [...prev];
+                updated[index] = {
+                    ...updated[index],
+                    price: Number(updated[index].price) + Number(expense.price),
+                }
+                return updated
+            }
+            else {
+                return [...prev, { category: expense.category, price: expense.price }];
+            }
+
+        })
         // Clear form and close modal
         setExpense({ title: '', price: '', category: '', date: '' });
         setEditIndex(null);
@@ -71,6 +109,23 @@ export default function Tracker() {
             balance: prev.balance + removedPrice,
             expenses: prev.expenses - removedPrice
         }));
+
+        setChartList(prev => {
+
+            const index = prev.findIndex((item, index) => removedExpense.category === item.category);
+            if (indexToRemove > -1) {
+                let updated = [...prev];
+                updated[index] = {
+                    ...updated[index],
+                    price: Number(updated[index].price) - Number(removedExpense.price),
+                }
+                return updated
+            }
+            else {
+                return [...prev, { category: expense.category, price: expense.price }];
+            }
+
+        })
     }
 
     function handleEdit(index) {
@@ -86,7 +141,21 @@ export default function Tracker() {
 
     }
 
+    useEffect(() => {
+        localStorage.setItem('expenseList', JSON.stringify(expenseList));
+    }, [expenseList]);
 
+    useEffect(() => {
+        localStorage.setItem('chartList', JSON.stringify(chartList));
+    }, [chartList]);
+
+    // useEffect(() => {
+    //     const storedExpenses = localStorage.getItem('expenseList');
+    //     if (storedExpenses) {
+    //         setExpenseList(JSON.parse(storedExpenses));
+    //     }
+    // }, [expenseList]);
+    console.log("Expenses :", expenseList)
     return (
         <>
             <div><h2 style={{
@@ -240,7 +309,7 @@ export default function Tracker() {
                                     style={{ border: "none", borderRadius: '0.7rem' }}
                                     placeholder="Select an option from below"
                                 >
-                                    <option selected="true" >make a selection...</option>
+                                    <option value="" disabled>Make a selection...</option>
                                     <option value="Food">Food</option>
                                     <option value="Entertainment">Entertainment</option>
                                     <option value="Travel">Travel</option>
@@ -286,8 +355,8 @@ export default function Tracker() {
                     </ReactModal>
 
                 </div >
-                <div >
-                    <Charts expenseList={expenseList} />
+                <div className='charts'>
+                    <Charts chartList={chartList} />
                 </div>
             </div >
             <h2 style={{
@@ -296,38 +365,39 @@ export default function Tracker() {
                 left: '2rem', color: "white"
             }}>Recent Transactions</h2>
 
-            <div className='' style={{ display: "flex", flexDirection: "column", margin: " 0rem 2rem" }}>
+            <div className='transactionsTab' style={{}}>
 
+                <div className='transaction'>
+                    {
+                        expenseList.length === 0 ? (
+                            <div style={{ backgroundColor: "white", padding: "1rem" }}>
+                                <div>No Transactions</div>
+                            </div>
+                        ) : (
+                            expenseList.map((item, index) => (
+                                <>
+                                    <div id={index} className='transactionHistory' >
+                                        <div style={{ display: "flex", flexDirection: "column" }}>
+                                            <div>{item.title}</div>
+                                            <div>{item.date}</div>
 
-                {
-                    expenseList.length === 0 ? (
-                        <div className='transactionHistory' style={{ backgroundColor: "white", padding: "1rem" }}>
-                            <div>No Transactions</div>
-                        </div>
-                    ) : (
-                        expenseList.map((item, index) => (
-                            <>
-                                <div id={index} className='transactionHistory' style={{
-                                    backgroundColor: "white", padding: "1rem", margin: "0.5rem 0", display: "flex", justifyContent: "space-between"
-                                }}>
-                                    <div style={{ display: "flex", flexDirection: "column" }}>
-                                        <div>{item.title}</div>
-                                        <div>{item.date}</div>
-
+                                        </div>
+                                        <div style={{ display: "flex", flexDirection: "row", gap: "1rem", alignItems: "center" }}>
+                                            <div style={{ fontWeight: "bold", color: '#F4BB4A', }}>₹ {item.price}</div>
+                                            <div className='iconDelete' onClick={(e) => handleDelete(index)}><AiOutlineCloseCircle /></div>
+                                            <div className='iconEdit'><AiOutlineEdit onClick={() => handleEdit(index)} style={{ cursor: "pointer" }} /> </div>
+                                        </div>
                                     </div>
-                                    <div style={{ display: "flex", flexDirection: "row", gap: "1rem", alignItems: "center" }}>
-                                        <div style={{ fontWeight: "bold", color: '#F4BB4A', }}>₹ {item.price}</div>
-                                        <div className='iconDelete' onClick={(e) => handleDelete(index)}><AiOutlineCloseCircle /></div>
-                                        <div className='iconEdit'><AiOutlineEdit onClick={() => handleEdit(index)} style={{ cursor: "pointer" }} /> </div>
-                                    </div>
-                                </div>
-                                <div className="borderMap" ></div>
-                            </>
-                        ))
-                    )
-                }
+                                    <div className="borderMap" ></div>
+                                </>
+                            ))
+                        )
+                    }
+                </div>
 
-                <div className='' style={{ backgroundColor: "white" }}></div>
+                <div className='topExpenses' >
+                    {chartList.length > 0 && <HorizontalCharts chartList={chartList} />}
+                </div>
 
             </div >
 
