@@ -150,6 +150,13 @@
     height: 12rem;
   }
 
+  .headings {
+    display: flex;
+    flex-direction: row;
+    gap: 66rem 1056px;
+    position: relative;
+  }
+
   .tracker {
     background-color: #9B9B9B;
     width: 30%;
@@ -164,7 +171,7 @@
     display: flex;
     gap: 4rem;
     margin: 0rem 2rem;
-
+    position: relative;
   }
 
   .transaction {
@@ -208,7 +215,7 @@
     background-color: white;
     width: 49%;
     border-radius: 1rem;
-}
+  }
 
   .App {
     overflow-x: hidden;

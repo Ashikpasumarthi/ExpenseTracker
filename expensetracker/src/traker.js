@@ -359,45 +359,62 @@ export default function Tracker() {
                     <Charts chartList={chartList} />
                 </div>
             </div >
-            <h2 style={{
-                width: 'fit-content',
-                position: 'relative',
-                left: '2rem', color: "white"
-            }}>Recent Transactions</h2>
+            <div className='headings'>
+
+
+            </div>
+
 
             <div className='transactionsTab' style={{}}>
 
-                <div className='transaction'>
-                    {
-                        expenseList.length === 0 ? (
-                            <div style={{ backgroundColor: "white", padding: "1rem" }}>
-                                <div>No Transactions</div>
-                            </div>
-                        ) : (
-                            expenseList.map((item, index) => (
-                                <>
-                                    <div id={index} className='transactionHistory' >
-                                        <div style={{ display: "flex", flexDirection: "column" }}>
-                                            <div>{item.title}</div>
-                                            <div>{item.date}</div>
+                <div className='transactionTabDiv1'>
+                    <h2 style={{
+                        width: 'fit-content',
+                        position: 'relative',
+                        left: '2rem', color: "white"
+                    }}>Recent Transactions</h2>
+                    <div className='transaction'>
+                        {
+                            expenseList.length === 0 ? (
+                                <div style={{ backgroundColor: "white", padding: "1rem" }}>
+                                    <div>No Transactions</div>
+                                </div>
+                            ) : (
+                                expenseList.map((item, index) => (
+                                    <>
+                                        <div id={index} className='transactionHistory' >
+                                            <div style={{ display: "flex", flexDirection: "column" }}>
+                                                <div>{item.title}</div>
+                                                <div>{item.date}</div>
 
+                                            </div>
+                                            <div style={{ display: "flex", flexDirection: "row", gap: "1rem", alignItems: "center" }}>
+                                                <div style={{ fontWeight: "bold", color: '#F4BB4A', }}>₹ {item.price}</div>
+                                                <div className='iconDelete' onClick={(e) => handleDelete(index)}><AiOutlineCloseCircle /></div>
+                                                <div className='iconEdit'><AiOutlineEdit onClick={() => handleEdit(index)} style={{ cursor: "pointer" }} /> </div>
+                                            </div>
                                         </div>
-                                        <div style={{ display: "flex", flexDirection: "row", gap: "1rem", alignItems: "center" }}>
-                                            <div style={{ fontWeight: "bold", color: '#F4BB4A', }}>₹ {item.price}</div>
-                                            <div className='iconDelete' onClick={(e) => handleDelete(index)}><AiOutlineCloseCircle /></div>
-                                            <div className='iconEdit'><AiOutlineEdit onClick={() => handleEdit(index)} style={{ cursor: "pointer" }} /> </div>
-                                        </div>
-                                    </div>
-                                    <div className="borderMap" ></div>
-                                </>
-                            ))
-                        )
-                    }
+                                        <div className="borderMap" ></div>
+                                    </>
+                                ))
+                            )
+                        }
+                    </div>
                 </div>
 
-                <div className='topExpenses' >
-                    {chartList.length > 0 && <HorizontalCharts chartList={chartList} />}
+                <div>
+                    <h2 style={{
+                        width: 'fit-content',
+                        position: 'relative',
+                        color: "white"
+                    }}>Top Expenses</h2>
+                    <div className='topExpenses' >
+                        {chartList.length > 0 && <HorizontalCharts chartList={chartList} />}
+                    </div>
                 </div>
+
+
+
 
             </div >
 
