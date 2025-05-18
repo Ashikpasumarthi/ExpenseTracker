@@ -4,7 +4,7 @@ import ReactModal from 'react-modal';
 import Charts from "./charts";
 import { AiOutlineEdit } from "react-icons/ai";
 import { AiOutlineCloseCircle } from "react-icons/ai";
-import HorizontalCharts from "./horizontalCharts"
+import BarChart from "./horizontalCharts"
 
 export default function Tracker() {
 
@@ -365,13 +365,13 @@ export default function Tracker() {
             </div>
 
 
-            <div className='transactionsTab' style={{}}>
+            <div className='transactionsTab'>
 
                 <div className='transactionTabDiv1'>
-                    <h2 style={{
+                    <h2 className='transactionHeader' style={{
                         width: 'fit-content',
                         position: 'relative',
-                        left: '2rem', color: "white"
+                        left: '0rem', color: "white"
                     }}>Recent Transactions</h2>
                     <div className='transaction'>
                         {
@@ -402,14 +402,13 @@ export default function Tracker() {
                     </div>
                 </div>
 
-                <div>
-                    <h2 style={{
-                        width: 'fit-content',
-                        position: 'relative',
-                        color: "white"
-                    }}>Top Expenses</h2>
-                    <div className='topExpenses' >
-                        {chartList.length > 0 && <HorizontalCharts chartList={chartList} />}
+
+
+                <div className='topExpenses' >
+                    <div  className='topExpenseHeader'>Top Expenses</div>
+
+                    <div style={{ width: '100%', height: '300px', background: 'white', borderRadius: '1rem' }} className='chartWrapper'>
+                        {chartList.length > 0 && <BarChart chartList={chartList} />}
                     </div>
                 </div>
 

@@ -38,10 +38,10 @@ export default function BarChart({ chartList }) {
         <XAxis type="number" />
         <YAxis dataKey="name" type="category" scale="band" />
         <Tooltip />
-        <Legend />
+        
 
         <Bar dataKey="value" barSize={20} fill="#413ea0" />
-
+        <Legend />
 
       </ComposedChart>
     </ResponsiveContainer>
