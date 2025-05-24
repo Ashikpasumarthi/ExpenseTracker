@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
 import ReactModal from 'react-modal';
-import Charts from "./charts";
+import Charts from "./charts.jsx";
 // import { AiOutlineEdit } from "react-icons/ai";
 // import { AiOutlineCloseCircle } from "react-icons/ai";
-import BarChart from "./horizontalCharts"
+import BarChart from "./horizontalCharts.jsx"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faXmark } from '@fortawesome/free-solid-svg-icons';
 
