@@ -2,9 +2,11 @@ import React, { useEffect } from 'react'
 import { useState } from 'react';
 import ReactModal from 'react-modal';
 import Charts from "./charts";
-import { AiOutlineEdit } from "react-icons/ai";
-import { AiOutlineCloseCircle } from "react-icons/ai";
+// import { AiOutlineEdit } from "react-icons/ai";
+// import { AiOutlineCloseCircle } from "react-icons/ai";
 import BarChart from "./horizontalCharts"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPen, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 export default function Tracker() {
 
@@ -390,8 +392,8 @@ export default function Tracker() {
                                             </div>
                                             <div style={{ display: "flex", flexDirection: "row", gap: "1rem", alignItems: "center" }}>
                                                 <div style={{ fontWeight: "bold", color: '#F4BB4A', }}>₹ {item.price}</div>
-                                                <div className='iconDelete' onClick={(e) => handleDelete(index)}><AiOutlineCloseCircle /></div>
-                                                <div className='iconEdit'><AiOutlineEdit onClick={() => handleEdit(index)} style={{ cursor: "pointer" }} /> </div>
+                                                <div className='iconDelete' onClick={(e) => handleDelete(index)}><FontAwesomeIcon icon={faXmark} /></div>
+                                                <div className='iconEdit'><FontAwesomeIcon icon={faPen} onClick={() => handleEdit(index)} style={{ cursor: "pointer" }} /></div>
                                             </div>
                                         </div>
                                         <div className="borderMap" ></div>
@@ -405,7 +407,7 @@ export default function Tracker() {
 
 
                 <div className='topExpenses' >
-                    <div  className='topExpenseHeader'>Top Expenses</div>
+                    <div className='topExpenseHeader'>Top Expenses</div>
 
                     <div style={{ width: '100%', height: '300px', background: 'white', borderRadius: '1rem' }} className='chartWrapper'>
                         {chartList.length > 0 && <BarChart chartList={chartList} />}
