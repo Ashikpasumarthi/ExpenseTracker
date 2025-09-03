@@ -43,8 +43,13 @@ export default function Tracker() {
 
     function handleExpense() {
         const price = Number(expense.price);
-        if (!price || price <= 0) {
+        if (!price || price <= 0 ) {
             alert("Please enter a valid price.");
+            return;
+        }
+
+        if(amount.balance - price < 0){
+            alert("Insufficient balance.");
             return;
         }
 
