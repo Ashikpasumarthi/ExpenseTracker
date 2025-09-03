@@ -19,7 +19,7 @@ export default function BarChart({ chartList }) {
     name: expense.category,
     value: Number(expense.price),
   }));
-  if (data.length === 0) {
+  if (data.length > 0) {
     return (
 
 
@@ -28,7 +28,7 @@ export default function BarChart({ chartList }) {
           layout="vertical"
           width={ 500 }
           height={ 400 }
-          // data={ }
+          data={ data }
           margin={ {
             top: 20,
             right: 20,
@@ -55,7 +55,7 @@ export default function BarChart({ chartList }) {
         layout="vertical"
         width={ 500 }
         height={ 400 }
-        data={ data }
+        // data={ data }
         margin={ {
           top: 20,
           right: 20,
