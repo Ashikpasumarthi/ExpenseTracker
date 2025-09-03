@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { enqueueSnackbar } from 'notistack'
 import { useState } from 'react';
 import ReactModal from 'react-modal';
 import Charts from "./charts.jsx";
@@ -44,17 +45,17 @@ export default function Tracker() {
     function handleExpense() {
         const price = Number(expense.price);
         if (!price || price <= 0) {
-            alert("Please enter a valid price.");
+            enqueueSnackbar("Please enter a valid price.",{variant:"warning"});
             return;
         }
 
         if (amount.balance - price < 0) {
-            alert("Insufficient balance.");
+            enqueueSnackbar("Insufficient balance.", { variant: "info" });
             return;
         }
 
         if (!expense.title || !expense.category || !expense.date) {
-            alert("Please fill in all fields.");
+            enqueueSnackbar("Please fill in all fields.", { variant: "warning" });
             return;
         }
 
@@ -99,7 +100,7 @@ export default function Tracker() {
 
         })
         // Clear form and close modal
-        setExpense({ title: '', price: '', category: '', date: '' });
+        setExpense({ title: '', price: '', category: " ", date: '' });
         setEditIndex(null);
         setExpenseModal(false);
     }
