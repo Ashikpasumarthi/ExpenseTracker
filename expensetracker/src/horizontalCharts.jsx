@@ -55,7 +55,7 @@ export default function BarChart({ chartList }) {
         layout="vertical"
         width={ 500 }
         height={ 400 }
-        // data={ data }
+        data={ [] }
         margin={ {
           top: 20,
           right: 20,
