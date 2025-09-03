@@ -37,7 +37,7 @@ export default function BarChart({ chartList }) {
           } }
         >
 
-          <XAxis type="number" />
+          <XAxis type="number" domain={[0,1]}/>
           <YAxis dataKey="name" type="category" scale="band" />
           <Tooltip />
 
