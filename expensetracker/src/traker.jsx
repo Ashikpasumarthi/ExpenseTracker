@@ -43,12 +43,12 @@ export default function Tracker() {
 
     function handleExpense() {
         const price = Number(expense.price);
-        if (!price || price <= 0 ) {
+        if (!price || price <= 0) {
             alert("Please enter a valid price.");
             return;
         }
 
-        if(amount.balance - price < 0){
+        if (amount.balance - price < 0) {
             alert("Insufficient balance.");
             return;
         }
@@ -165,15 +165,15 @@ export default function Tracker() {
     console.log("Expenses :", expenseList)
     return (
         <>
-            <div><h2 style={{
+            <div><h2 style={ {
                 color: "white", position: "relative",
                 left: "2rem"
-            }}>Expense Tracker</h2></div>
+            } }>Expense Tracker</h2></div>
             <div className='expenseTracker'>
                 <div className='tracker'>
-                    <div style={{ display: "flex", flexDirection: "column" }}>
-                        <span style={{ color: 'white' }}><h2>Wallet Balance :  <span style={{ color: "#89E148" }}>₹ {amount.balance}</span></h2></span>
-                        <button style={{
+                    <div style={ { display: "flex", flexDirection: "column" } }>
+                        <span style={ { color: 'white' } }><h2>Wallet Balance :  <span style={ { color: "#89E148" } }>₹ { amount.balance }</span></h2></span>
+                        <button style={ {
                             backgroundColor: "rgb(137, 225, 72)",
                             width: "8rem",
                             height: "2rem",
@@ -183,13 +183,13 @@ export default function Tracker() {
                             borderRadius: "1rem",
                             color: "white",
                             fontWeight: "700"
-                        }} onClick={() => setBalanceModal(true)}>+ Add Income</button>
+                        } } onClick={ () => setBalanceModal(true) }>+ Add Income</button>
                     </div>
                     <ReactModal
-                        isOpen={balanceModal} // This tells ReactModal whether it should be visible or not.So if balanceModal is true, the modal opens; if false, it stays hidden.
-                        onRequestClose={() => setBalanceModal(false)} //This defines what happens when the user tries to close the modal.Here, it sets balanceModal to false, i.e., closes the modal.
-                        shouldCloseOnOverlayClick={true}
-                        style={{
+                        isOpen={ balanceModal } // This tells ReactModal whether it should be visible or not.So if balanceModal is true, the modal opens; if false, it stays hidden.
+                        onRequestClose={ () => setBalanceModal(false) } //This defines what happens when the user tries to close the modal.Here, it sets balanceModal to false, i.e., closes the modal.
+                        shouldCloseOnOverlayClick={ true }
+                        style={ {
                             content: {
                                 top: '50%',
                                 left: '50%',
@@ -210,15 +210,15 @@ export default function Tracker() {
                             overlay: {
                                 backgroundColor: 'rgba(0, 0, 0, 0.6)',
                             }
-                        }}
+                        } }
                     >
-                        <h3 style={{ marginBottom: '20px' }}>Add Balance</h3>
-                        {/* <p style={{ marginBottom: '20px' }}>Add Balance</p> */}
-                        <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem' }}>
-                            <input className="balanceInput" type='text' value={addBalance} onChange={(e) => setAddBalance(e.target.value)} placeholder='Income Amount' />
+                        <h3 style={ { marginBottom: '20px' } }>Add Balance</h3>
+                        {/* <p style={{ marginBottom: '20px' }}>Add Balance</p> */ }
+                        <div style={ { display: 'flex', flexDirection: 'row', gap: '1rem' } }>
+                            <input className="balanceInput" type='text' value={ addBalance } onChange={ (e) => setAddBalance(e.target.value) } placeholder='Income Amount' />
                             <button
-                                onClick={handleAddBalance}
-                                style={{
+                                onClick={ handleAddBalance }
+                                style={ {
                                     padding: '10px 20px',
                                     fontSize: '16px',
                                     cursor: 'pointer',
@@ -226,13 +226,13 @@ export default function Tracker() {
                                     backgroundColor: '#F4BB4A',
                                     color: 'white',
                                     border: 'none',
-                                }}
+                                } }
                             >
                                 Add Balance
                             </button>
                             <button
-                                onClick={() => setBalanceModal(false)}
-                                style={{
+                                onClick={ () => setBalanceModal(false) }
+                                style={ {
                                     padding: '10px 20px',
                                     fontSize: '16px',
                                     cursor: 'pointer',
@@ -240,7 +240,7 @@ export default function Tracker() {
                                     backgroundColor: '#E3E3E3',
                                     color: 'black',
                                     border: 'none',
-                                }}
+                                } }
                             >
                                 Cancel
                             </button>
@@ -248,9 +248,9 @@ export default function Tracker() {
                     </ReactModal>
                 </div>
                 <div className='tracker'>
-                    <div style={{ display: "flex", flexDirection: "column" }}>
-                        <span style={{ color: 'white' }}><h2>Expense :  <span style={{ color: "#F4BB4A" }}>₹ {amount.expenses}</span></h2></span>
-                        <button style={{
+                    <div style={ { display: "flex", flexDirection: "column" } }>
+                        <span style={ { color: 'white' } }><h2>Expense :  <span style={ { color: "#F4BB4A" } }>₹ { amount.expenses }</span></h2></span>
+                        <button style={ {
                             // backgroundolor: #00DBDE;
                             backgroundImage: "linear-gradient(90deg, #FF9595 10%, #FF4747 35%, #FF3838 100%)",
                             width: "8rem",
@@ -261,14 +261,14 @@ export default function Tracker() {
                             borderRadius: "1rem",
                             color: "white",
                             fontWeight: "700"
-                        }} onClick={() => setExpenseModal(true)}>+ Add Expense</button>
+                        } } onClick={ () => setExpenseModal(true) }>+ Add Expense</button>
                     </div>
 
                     <ReactModal
-                        isOpen={expenseModal} // This tells ReactModal whether it should be visible or not.So if balanceModal is true, the modal opens; if false, it stays hidden.
-                        onRequestClose={() => setExpenseModal(false)} //This defines what happens when the user tries to close the modal.Here, it sets balanceModal to false, i.e., closes the modal.
-                        shouldCloseOnOverlayClick={true}
-                        style={{
+                        isOpen={ expenseModal } // This tells ReactModal whether it should be visible or not.So if balanceModal is true, the modal opens; if false, it stays hidden.
+                        onRequestClose={ () => setExpenseModal(false) } //This defines what happens when the user tries to close the modal.Here, it sets balanceModal to false, i.e., closes the modal.
+                        shouldCloseOnOverlayClick={ true }
+                        style={ {
                             content: {
                                 top: '50%',
                                 left: '50%',
@@ -289,31 +289,31 @@ export default function Tracker() {
                             overlay: {
                                 backgroundColor: 'rgba(0, 0, 0, 0.6)',
                             }
-                        }}
+                        } }
                     >
-                        <h3 style={{ marginBottom: '20px' }}>Add expenses</h3>
-                        {/* <p style={{ marginBottom: '20px' }}>Add Balance</p> */}
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                        <h3 style={ { marginBottom: '20px' } }>Add expenses</h3>
+                        {/* <p style={{ marginBottom: '20px' }}>Add Balance</p> */ }
+                        <div style={ { display: 'flex', flexDirection: 'column', gap: '1rem' } }>
                             <div className='expenseInnerDiv'>
                                 <input
 
                                     type='text'
-                                    value={expense.title}
-                                    onChange={(e) => setExpense({ ...expense, title: e.target.value })}
+                                    value={ expense.title }
+                                    onChange={ (e) => setExpense({ ...expense, title: e.target.value }) }
                                     placeholder='Expense Title'
                                 />
 
                                 <input
                                     type='number'
-                                    value={expense.price}
-                                    onChange={(e) => setExpense({ ...expense, price: e.target.value })}
+                                    value={ expense.price }
+                                    onChange={ (e) => setExpense({ ...expense, price: e.target.value }) }
                                     placeholder='Amount'
                                 />
 
                                 <select
-                                    value={expense.category}
-                                    onChange={(e) => setExpense({ ...expense, category: e.target.value })}
-                                    style={{ border: "none", borderRadius: '0.7rem' }}
+                                    value={ expense.category }
+                                    onChange={ (e) => setExpense({ ...expense, category: e.target.value }) }
+                                    style={ { border: "none", borderRadius: '0.7rem' } }
                                     placeholder="Select an option from below"
                                 >
                                     <option value="" disabled>Make a selection...</option>
@@ -325,12 +325,12 @@ export default function Tracker() {
 
                                 <input
                                     type="date"
-                                    value={expense.date}
-                                    onChange={(e) => setExpense({ ...expense, date: e.target.value })}
+                                    value={ expense.date }
+                                    onChange={ (e) => setExpense({ ...expense, date: e.target.value }) }
                                 />
                                 <button
-                                    onClick={handleExpense}
-                                    style={{
+                                    onClick={ handleExpense }
+                                    style={ {
                                         padding: '10px 20px',
                                         fontSize: '16px',
                                         cursor: 'pointer',
@@ -338,13 +338,13 @@ export default function Tracker() {
                                         backgroundColor: '#F4BB4A',
                                         color: 'white',
                                         border: 'none',
-                                    }}
+                                    } }
                                 >
                                     Add expenses
                                 </button>
                                 <button
-                                    onClick={() => setExpenseModal(false)}
-                                    style={{
+                                    onClick={ () => setExpenseModal(false) }
+                                    style={ {
                                         padding: '10px 20px',
                                         fontSize: '16px',
                                         cursor: 'pointer',
@@ -352,7 +352,7 @@ export default function Tracker() {
                                         backgroundColor: '#E3E3E3',
                                         color: 'black',
                                         border: 'none',
-                                    }}
+                                    } }
                                 >
                                     Cancel
                                 </button>
@@ -363,7 +363,7 @@ export default function Tracker() {
 
                 </div >
                 <div className='charts'>
-                    <Charts chartList={chartList} />
+                    <Charts chartList={ chartList } />
                 </div>
             </div >
             <div className='headings'>
@@ -375,33 +375,33 @@ export default function Tracker() {
             <div className='transactionsTab'>
 
                 <div className='transactionTabDiv1'>
-                    <h2 className='transactionHeader' style={{
+                    <h2 className='transactionHeader' style={ {
                         width: 'fit-content',
                         position: 'relative',
                         left: '0rem', color: "white"
-                    }}>Recent Transactions</h2>
+                    } }>Recent Transactions</h2>
                     <div className='transaction'>
                         {
                             expenseList.length === 0 ? (
-                                <div style={{ backgroundColor: "white", padding: "1rem" }}>
+                                <div style={ { backgroundColor: "white", padding: "1rem" } }>
                                     <div>No Transactions</div>
                                 </div>
                             ) : (
                                 expenseList.map((item, index) => (
                                     <>
-                                        <div id={index} className='transactionHistory' >
-                                            <div style={{ display: "flex", flexDirection: "column" }}>
-                                                <div>{item.title}</div>
-                                                <div>{item.date}</div>
+                                        <div id={ index } className='transactionHistory' >
+                                            <div style={ { display: "flex", flexDirection: "column" } }>
+                                                <div>{ item.title }</div>
+                                                <div>{ item.date }</div>
 
                                             </div>
-                                            <div style={{ display: "flex", flexDirection: "row", gap: "1rem", alignItems: "center" }}>
-                                                <div style={{ fontWeight: "bold", color: '#F4BB4A', }}>₹ {item.price}</div>
-                                                <div className='iconDelete' onClick={(e) => handleDelete(index)}><FontAwesomeIcon icon={faXmark} /></div>
-                                                <div className='iconEdit'><FontAwesomeIcon icon={faPen} onClick={() => handleEdit(index)} style={{ cursor: "pointer" }} /></div>
+                                            <div style={ { display: "flex", flexDirection: "row", gap: "1rem", alignItems: "center" } }>
+                                                <div style={ { fontWeight: "bold", color: '#F4BB4A', } }>₹ { item.price }</div>
+                                                <div className='iconDelete' onClick={ (e) => handleDelete(index) }><FontAwesomeIcon icon={ faXmark } /></div>
+                                                <div className='iconEdit'><FontAwesomeIcon icon={ faPen } onClick={ () => handleEdit(index) } style={ { cursor: "pointer" } } /></div>
                                             </div>
                                         </div>
-                                        <div className="borderMap" ></div>
+                                        <div className={ index === expenseList.length - 1 ? "" : "borderMap" }></div>
                                     </>
                                 ))
                             )
@@ -414,8 +414,8 @@ export default function Tracker() {
                 <div className='topExpenses' >
                     <div className='topExpenseHeader'>Top Expenses</div>
 
-                    <div style={{ width: '100%', height: '300px', background: 'white', borderRadius: '1rem' }} className='chartWrapper'>
-                        {chartList.length > 0 && <BarChart chartList={chartList} />}
+                    <div style={ { width: '100%', height: '300px', background: 'white', borderRadius: '1rem' } } className='chartWrapper'>
+                        { chartList.length > 0 && <BarChart chartList={ chartList } /> }
                     </div>
                 </div>
 
